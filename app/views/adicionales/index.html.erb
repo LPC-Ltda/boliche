@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Adicionales</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adicional</th>
+      <th>Precio</th>
+      <th>Estado</th>
+      <th>Creado por</th>
+      <th>Actualizado por</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adicionales.each do |adicional| %>
+      <tr>
+        <td><%= adicional.adicional %></td>
+        <td><%= adicional.precio %></td>
+        <td><%= adicional.estado %></td>
+        <td><%= adicional.creado_por %></td>
+        <td><%= adicional.actualizado_por %></td>
+        <td><%= link_to 'Show', adicional %></td>
+        <td><%= link_to 'Edit', edit_adicional_path(adicional) %></td>
+        <td><%= link_to 'Destroy', adicional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adicional', new_adicional_path %>

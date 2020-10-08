@@ -1,0 +1,42 @@
+<%= form_with(model: agregado, local: true) do |form| %>
+  <% if agregado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(agregado.errors.count, "error") %> prohibited this agregado from being saved:</h2>
+
+      <ul>
+      <% agregado.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :adicional_id %>
+    <%= form.number_field :adicional_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detalle_pedido_id %>
+    <%= form.number_field :detalle_pedido_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creado_por %>
+    <%= form.text_field :creado_por %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actualizado_por %>
+    <%= form.text_field :actualizado_por %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Agregados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adicional</th>
+      <th>Detalle pedido</th>
+      <th>Estado</th>
+      <th>Creado por</th>
+      <th>Actualizado por</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @agregados.each do |agregado| %>
+      <tr>
+        <td><%= agregado.adicional_id %></td>
+        <td><%= agregado.detalle_pedido_id %></td>
+        <td><%= agregado.estado %></td>
+        <td><%= agregado.creado_por %></td>
+        <td><%= agregado.actualizado_por %></td>
+        <td><%= link_to 'Show', agregado %></td>
+        <td><%= link_to 'Edit', edit_agregado_path(agregado) %></td>
+        <td><%= link_to 'Destroy', agregado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Agregado', new_agregado_path %>

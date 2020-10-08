@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @detalle_pedido.cantidad %>
+</p>
+
+<p>
+  <strong>Observacion:</strong>
+  <%= @detalle_pedido.observacion %>
+</p>
+
+<p>
+  <strong>Pedido:</strong>
+  <%= @detalle_pedido.pedido_id %>
+</p>
+
+<p>
+  <strong>Producto:</strong>
+  <%= @detalle_pedido.producto_id %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @detalle_pedido.estado %>
+</p>
+
+<p>
+  <strong>Creado por:</strong>
+  <%= @detalle_pedido.creado_por %>
+</p>
+
+<p>
+  <strong>Actualizado por:</strong>
+  <%= @detalle_pedido.actualizado_por %>
+</p>
+
+<%= link_to 'Edit', edit_detalle_pedido_path(@detalle_pedido) %> |
+<%= link_to 'Back', detalle_pedidos_path %>

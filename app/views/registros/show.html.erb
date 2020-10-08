@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @registro.cliente_id %>
+</p>
+
+<p>
+  <strong>Empresa:</strong>
+  <%= @registro.empresa_id %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @registro.estado %>
+</p>
+
+<p>
+  <strong>Creado por:</strong>
+  <%= @registro.creado_por %>
+</p>
+
+<p>
+  <strong>Actualizado por:</strong>
+  <%= @registro.actualizado_por %>
+</p>
+
+<%= link_to 'Edit', edit_registro_path(@registro) %> |
+<%= link_to 'Back', registros_path %>

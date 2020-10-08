@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hora_pedido: 2020-10-08 16:19:22
+  hora_entrega: 2020-10-08 16:19:22
+  observacion: MyText
+  registro_id: 1
+  estado: MyString
+  creado_por: MyString
+  actualizado_por: MyString
+
+two:
+  hora_pedido: 2020-10-08 16:19:22
+  hora_entrega: 2020-10-08 16:19:22
+  observacion: MyText
+  registro_id: 1
+  estado: MyString
+  creado_por: MyString
+  actualizado_por: MyString

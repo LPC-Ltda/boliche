@@ -1,0 +1,42 @@
+<%= form_with(model: adicional, local: true) do |form| %>
+  <% if adicional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adicional.errors.count, "error") %> prohibited this adicional from being saved:</h2>
+
+      <ul>
+      <% adicional.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :adicional %>
+    <%= form.text_field :adicional %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precio %>
+    <%= form.text_field :precio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creado_por %>
+    <%= form.text_field :creado_por %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actualizado_por %>
+    <%= form.text_field :actualizado_por %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

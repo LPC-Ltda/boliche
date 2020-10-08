@@ -10,6 +10,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- NAVBAR -->
+    <%= render partial: 'apariencia/navbar' %>
+
+    <div class="container-fluid"> <%= yield %> </div>
+
   </body>
 </html>
+
+

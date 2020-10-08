@@ -1,0 +1,2 @@
+module AgregadosHelper
+end

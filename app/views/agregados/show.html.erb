@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adicional:</strong>
+  <%= @agregado.adicional_id %>
+</p>
+
+<p>
+  <strong>Detalle pedido:</strong>
+  <%= @agregado.detalle_pedido_id %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @agregado.estado %>
+</p>
+
+<p>
+  <strong>Creado por:</strong>
+  <%= @agregado.creado_por %>
+</p>
+
+<p>
+  <strong>Actualizado por:</strong>
+  <%= @agregado.actualizado_por %>
+</p>
+
+<%= link_to 'Edit', edit_agregado_path(@agregado) %> |
+<%= link_to 'Back', agregados_path %>

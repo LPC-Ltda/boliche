@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  producto: MyString
+  disponibilidad: MyString
+  demora_minutos: 1
+  estado: MyString
+  creado_por: MyString
+  actualizado_por: MyString
+
+two:
+  producto: MyString
+  disponibilidad: MyString
+  demora_minutos: 1
+  estado: MyString
+  creado_por: MyString
+  actualizado_por: MyString

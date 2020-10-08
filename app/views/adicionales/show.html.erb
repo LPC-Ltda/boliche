@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adicional:</strong>
+  <%= @adicional.adicional %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @adicional.precio %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @adicional.estado %>
+</p>
+
+<p>
+  <strong>Creado por:</strong>
+  <%= @adicional.creado_por %>
+</p>
+
+<p>
+  <strong>Actualizado por:</strong>
+  <%= @adicional.actualizado_por %>
+</p>
+
+<%= link_to 'Edit', edit_adicional_path(@adicional) %> |
+<%= link_to 'Back', adicionales_path %>
