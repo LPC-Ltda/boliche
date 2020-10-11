@@ -4,4 +4,12 @@ class Empresa < ApplicationRecord
 	has_many :registros
 
 	has_many :clientes, through: :registros
+
+	D_TABLA = {
+		ftabs:   true,
+		tabs:    false,
+		paginas: false,
+		estados: true,
+		nuevo:   true
+	}
 end

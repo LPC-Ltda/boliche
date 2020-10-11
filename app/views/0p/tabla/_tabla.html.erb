@@ -1,0 +1,31 @@
+<!-- :ftabs -->
+<%= render partial: '0p/tabs/tabs', locals: {var: 'ftab', tabs: m_tabs(controller_name), link_tabs: m_link_tabs(controller_name), tab: @ftab} if d_tabla(c, :ftabs) %>
+
+<!-- TITULO TABLA: se usa 'titulo_ruta' -->
+<%= render partial: 'apariencia/titulo', locals: {titulo: titulo_tabla(d, seleccion?), size: '5'} if d_tabla(c, :titulo) %>
+
+<!-- TABS generado desde un ARREGLO -->
+<%= render partial: 'apariencia/layout_array_tabs', locals: {tabs: @tabs, link_tabs: @link_tabs} if d_tabla(c, :tabs) %>
+
+<!-- SELECTOR -->
+<%= render partial: "#{d}/selector" if d_tabla(c, :paginas) %>
+
+<!-- ESTADOS -->
+<%= render partial: 'apariencia/menu_estados', locals: {estado: @estado, estados: @estados, link_estados: @link_estados,} if d_tabla(c, :estados) %>
+
+<!-- BOTON NUEVO OBJETO SI HAY MAS DE 15 ELEMENTOS DESPLEGADOS -->
+<%= render partial: 'apariencia/btn_nuevo_objeto', locals: {link: @link_nuevo, texto: texto_nuevo(d)} if d_tabla(c, :nuevo) and @coleccion.count > 15 %>
+
+<!-- CUERPO TABLA -->
+<table class="table table-striped">
+  <thead>
+    <%#= render partial: th %>
+    <%= render partial: "#{d}/th" %>
+  </thead>
+
+  <tbody>
+    <%= render @coleccion unless @coleccion.blank? %>
+  </tbody>
+</table>
+
+<%= render partial: 'apariencia/btn_nuevo_objeto', locals: {link: d_tabla(c, :nuevo), texto: texto_nuevo(d)} if @t_boton_on %>

@@ -6,7 +6,7 @@
   <ul class="navbar-nav">
 
     <!-- Controladores que no tienen menú -->
-    <% unless Recurso::NOMENU_CONTROLLES.include?(controller_name) %>
+    <% unless Recurso::NOMENU_CONTROLLERS.include?(controller_name) %>
       <li>
         <!-- USUARIO AUTENTICADO -->
         <% if usuario_signed_in? %>

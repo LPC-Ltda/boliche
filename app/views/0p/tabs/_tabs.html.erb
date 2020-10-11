@@ -1,0 +1,18 @@
+<!-- TAB -->
+<div class="container-fluid">
+  <ul class="nav nav-tabs">
+
+    <!-- TABS -->
+    <% unless tabs.blank? %>
+      <% tabs.each do |t| %>
+        <!-- TAB(tab) -->
+        <li class="nav-item">
+          <%= link_to t, "#{link_tabs}#{t}", class: "nav-link #{(t == tab ? 'active' : '')}" %>
+        </li>
+
+      <% end %>
+    <% end %>
+
+  </ul> 
+</div>
+</br>

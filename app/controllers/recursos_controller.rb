@@ -3,7 +3,8 @@ class RecursosController < ApplicationController
 
   # GET /recursos/tablas
   def tablas
-
+    # Manejo de Tablas, Tabs y Estados
+    @ftab = params[:ftab].blank? ? Recurso::TABS[0] : params[:ftab]
   end
 
   # GET /recursos/1
