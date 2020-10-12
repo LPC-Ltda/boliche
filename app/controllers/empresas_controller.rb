@@ -1,5 +1,5 @@
 class EmpresasController < ApplicationController
-  before_action :set_empresa, only: [:show, :edit, :update, :destroy]
+  before_action :set_empresa, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /empresas
   # GET /empresas.json
@@ -14,7 +14,7 @@ class EmpresasController < ApplicationController
 
   # GET /empresas/new
   def new
-    @objeto = Empresa.new
+    @objeto = Empresa.new(estado: Empresa::ESTADOS[0])
   end
 
   # GET /empresas/1/edit
@@ -28,7 +28,8 @@ class EmpresasController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Empresa was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Empresa was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class EmpresasController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(empresa_params)
-        format.html { redirect_to @objeto, notice: 'Empresa was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Empresa was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -54,9 +56,10 @@ class EmpresasController < ApplicationController
   # DELETE /empresas/1
   # DELETE /empresas/1.json
   def destroy
+    set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to empresas_url, notice: 'Empresa was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Empresa was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +68,10 @@ class EmpresasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_empresa
       @objeto = Empresa.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/recursos/tablas?ftab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

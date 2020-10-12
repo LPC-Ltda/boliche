@@ -7,6 +7,10 @@
 		<%= "// #{corrige(c)}" %>
 	<% when 'seleccion' %>
 		<%= "Selecciona #{corrige(c.singularize)}" %>
+	<% when 'new' %>
+		<%= "+ #{corrige(c).singularize.capitalize}" %>
+	<% when 'edit' %>
+		<%= "~ #{corrige(c).singularize.capitalize}" %>
 	<% end %>
 	<%= titulo %>
 </h<%= size%>>

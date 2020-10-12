@@ -1,0 +1,5 @@
+<tr>
+	<% c.classify.constantize::TABLA_FIELDS.each do |field| %>
+	  <th><%= field.capitalize.split('_').join(' ') %></th>
+	<% end %>
+</tr>

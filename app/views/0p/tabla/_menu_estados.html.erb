@@ -4,7 +4,7 @@
 			<%#= render partial: 'apariencia/btn_link', locals: {texto: e, link: link_estado+"estado=#{e}"} %>
 			<p>[ <%= link_to "#{e}" , link_estados+"#{e}" %> ]</p>	
 		<% else %>
-			<p><%= "[ #{estado} ]" %></p>	
+			<p><b><%= "[ #{estado} ]" %></b></p>	
 		<% end %>
 	</div>
 <% end %>

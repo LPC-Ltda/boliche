@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :empleados
   resources :empresas do
+    match :estado, via: :get, on: :member
     resources :roles
     resources :empleados
     resources :registros
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
     resources :empleados
   end
   resources :zonas do
+    match :estado, via: :get, on: :member
     resources :clientes
   end
 

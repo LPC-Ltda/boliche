@@ -17,9 +17,9 @@ module ApplicationHelper
 			controller_name == c ? "/#{controller_name}/#{action_name}?tab=" : "/#{controller_name}/#{action_name}?ftab=#{@ftab}&tab="
 		when 'estado'
 			if controller_name == c
-				m_tabs(c).empty? ? "#{controller_name}/#{action_name}?estado=" : "/#{controller_name}/#{action_name}?tab=#{@tab}&estado="
+				m_tabs(c).empty? ? "/#{controller_name}/#{action_name}?estado=" : "/#{controller_name}/#{action_name}?tab=#{@tab}&estado="
 			else
-				m_tabs(c).empty? ? "#{controller_name}/#{action_name}?ftab=#{@ftab}&estado=" : "/#{controller_name}/#{action_name}?ftab=#{@ftab}&tab=#{@tab}&estado="
+				m_tabs(c).empty? ? "/#{controller_name}/#{action_name}?ftab=#{@ftab}&estado=" : "/#{controller_name}/#{action_name}?ftab=#{@ftab}&tab=#{@tab}&estado="
 			end
 		end
 	end
@@ -31,5 +31,12 @@ module ApplicationHelper
 		else
 			w.capitalize
 		end
+	end
+
+	def has_child?(objeto)
+		objeto.class.reflect_on_all_associations.map { |a| objeto.send(a.name).any? }.include?(true)
+	end
+	def link_estado(objeto)
+		"/#{objeto.class.downcase.pluralize}/estado?estado="
 	end
 end

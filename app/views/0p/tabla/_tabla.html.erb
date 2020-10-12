@@ -15,12 +15,13 @@
 <!-- CUERPO TABLA -->
 <table class="table table-striped">
   <thead>
-    <%#= render partial: th %>
-    <%= render partial: "#{c}/th" %>
+    <%= render partial: '0p/tabla/th', locals: {c: c} %>
+    <!--%= render partial: "#{c}/th" %-->
   </thead>
 
   <tbody>
-    <%= render @coleccion unless @coleccion.blank? %>
+  	<%= render partial: "/#{c}/#{c.singularize}", collection: @coleccion, locals: {a: a} %>
+    <!--%= render @coleccion unless @coleccion.blank? %-->
   </tbody>
 </table>
 

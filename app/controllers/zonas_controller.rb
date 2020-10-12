@@ -1,5 +1,5 @@
 class ZonasController < ApplicationController
-  before_action :set_zona, only: [:show, :edit, :update, :destroy]
+  before_action :set_zona, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /zonas
   # GET /zonas.json
@@ -14,7 +14,7 @@ class ZonasController < ApplicationController
 
   # GET /zonas/new
   def new
-    @objeto = Zona.new
+    @objeto = Zona.new(estado: Zona::ESTADOS[0])
   end
 
   # GET /zonas/1/edit
@@ -28,7 +28,8 @@ class ZonasController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Zona was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Zona was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class ZonasController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(zona_params)
-        format.html { redirect_to @objeto, notice: 'Zona was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Zona was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -54,9 +56,10 @@ class ZonasController < ApplicationController
   # DELETE /zonas/1
   # DELETE /zonas/1.json
   def destroy
+    set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to zonas_url, notice: 'Zona was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Zona was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +68,10 @@ class ZonasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_zona
       @objeto = Zona.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/recursos/tablas?ftab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

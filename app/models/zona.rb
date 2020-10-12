@@ -12,4 +12,15 @@ class Zona < ApplicationRecord
 		estados: true,
 		nuevo:   true
 	}
+	FORM_FIELDS = [
+		['zona',             'entry'],
+		['tarifa',           'entry'],
+		['estado',          'hidden'],
+		['creado_por',      'hidden'],
+		['actualizado_por', 'hidden']
+	]
+	TABLA_FIELDS = ['zona', 'tarifa']
+
+    validates_presence_of :zona, :tarifa
+    validates_uniqueness_of :zona
 end
