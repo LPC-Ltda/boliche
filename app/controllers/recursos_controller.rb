@@ -5,6 +5,8 @@ class RecursosController < ApplicationController
   def tablas
     # Manejo de Tablas, Tabs y Estados
     @ftab = params[:ftab].blank? ? Recurso::TABS[0] : params[:ftab]
+    @estado = params[:estado].blank? ? @ftab.classify.constantize::ESTADOS[0] : params[:estado]
+    @coleccion = @ftab.classify.constantize::all
   end
 
   # GET /recursos/1

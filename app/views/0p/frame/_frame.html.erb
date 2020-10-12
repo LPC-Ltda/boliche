@@ -1,7 +1,7 @@
 <% if Recurso::TAB_ACTIONS.include?(action_name) %>
-	<%= render partial: '0p/tabs/tabs', locals: {tabs: m_tabs(controller_name), link_tabs: "/#{controller_name}/#{action_name}?ftab=", tab: @ftab } %>
+	<%= render partial: '0p/tabs/tabs', locals: {tabs: m_tabs(controller_name), link_tabs: get_link(controller_name, 'ftab'), tab: @ftab } %>
 <% end %>
 
 <% if Recurso::TABLE_ACTIONS.include?(action_name) %>
-<!--%= render partial: '0p/tabla/tabla', locals: {c: controller_name, a: action_name} %-->
+	<%= render partial: '0p/tabla/tabla', locals: {c: @ftab, a: 'index'} %>
 <% end %>

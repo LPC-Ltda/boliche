@@ -5,8 +5,13 @@ class Empresa < ApplicationRecord
 
 	has_many :clientes, through: :registros
 
+	TABS = []
+
+	ESTADOS = ['ingreso', 'activa', 'baja']
+
 	D_TABLA = {
 		ftabs:   true,
+		titulo:  true,
 		tabs:    false,
 		paginas: false,
 		estados: true,
