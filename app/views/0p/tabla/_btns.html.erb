@@ -1,5 +1,5 @@
 <% if a == 'seleccion' %>
-	<%= render partial: '0p/tabla/btn_seleccion', locals: {link_seleccion: @link_seleccion+"empresa_id=#{objeto.id}"} %>
+	<%= render partial: '0p/tabla/btn_seleccion', locals: {link_seleccion: "#{@link_seleccion}#{objeto.id}" } %>
 <% else %>
 	<!-- VALIDA QUE SE PUEDA MODIFICAR -->
 	<!--% if objeto.class.name.constantize::ESTADOS.index(objeto.estado) == 0 %-->

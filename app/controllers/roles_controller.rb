@@ -7,6 +7,11 @@ class RolesController < ApplicationController
     @coleccion = Rol.all
   end
 
+  def seleccion
+    @link_seleccion = "/empleados/new?empresa_id=#{params[:empresa_id]}&rol_id="
+    @coleccion = Empresa.find(params[:empresa_id]).roles
+  end
+
   # GET /roles/1
   # GET /roles/1.json
   def show
@@ -14,7 +19,7 @@ class RolesController < ApplicationController
 
   # GET /roles/new
   def new
-    @objeto = Rol.new
+    @objeto = Rol.new(empresa_id: params[:empresa_id], estado: Rol::ESTADOS[0])
   end
 
   # GET /roles/1/edit
@@ -28,7 +33,8 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Rol was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Rol was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -42,7 +48,8 @@ class RolesController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(rol_params)
-        format.html { redirect_to @objeto, notice: 'Rol was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Rol was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -54,9 +61,10 @@ class RolesController < ApplicationController
   # DELETE /roles/1
   # DELETE /roles/1.json
   def destroy
+    set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to roles_url, notice: 'Rol was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Rol was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +73,10 @@ class RolesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_rol
       @objeto = Rol.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

@@ -21,6 +21,8 @@ class Zona < ApplicationRecord
 	]
 	TABLA_FIELDS = ['zona', 'tarifa']
 
+ 	TIPO_NEW = 'normal'
+ 	
     validates_presence_of :zona, :tarifa
     validates_uniqueness_of :zona
 end

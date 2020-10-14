@@ -1,5 +1,1 @@
-<h1>New Empleado</h1>
-
-<%= render 'form', empleado: @empleado %>
-
-<%= link_to 'Back', empleados_path %>
+<%= render partial: '0p/form/form', locals: {c: controller_name, a: action_name} %>

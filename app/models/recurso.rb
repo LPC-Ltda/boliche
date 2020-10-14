@@ -5,4 +5,7 @@ class Recurso < ApplicationRecord
 
 	TABS = ['empresas', 'zonas']
 
+	# CONTROL APLICACION
+	NO_TABLAS = ['registros']
+
 end

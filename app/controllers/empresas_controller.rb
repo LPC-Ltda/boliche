@@ -10,6 +10,8 @@ class EmpresasController < ApplicationController
   # GET /empresas/1
   # GET /empresas/1.json
   def show
+    @tab = params[:tab].blank? ? 'clientes' : params[:tab]
+    @coleccion = @tab == 'clientes' ? @objeto.clientes : @tab.classify.constantize.where(empresa_id: @objeto.id)
   end
 
   # GET /empresas/new

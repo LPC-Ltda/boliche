@@ -14,7 +14,7 @@ class EmpleadosController < ApplicationController
 
   # GET /empleados/new
   def new
-    @objeto = Empleado.new
+    @objeto = Empleado.new(empresa_id: params[:empresa_id], rol_id: params[:rol_id], estado: Empleado::ESTADOS[0])
   end
 
   # GET /empleados/1/edit
@@ -65,6 +65,10 @@ class EmpleadosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_empleado
       @objeto = Empleado.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

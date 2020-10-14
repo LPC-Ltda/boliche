@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :pedidos
   end
   resources :roles do
+    match :seleccion, via: :get, on: :collection
     resources :empleados
   end
   resources :zonas do

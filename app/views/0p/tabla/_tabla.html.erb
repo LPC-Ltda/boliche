@@ -1,6 +1,7 @@
 <!-- TITULO TABLgA: se usa 'titulo_ruta' -->
 <%= render partial: '0p/general/titulo', locals: {c: c, a: a, titulo: '', size: '5'} if d_tabla(c, :titulo) %>
 
+
 <%= render partial: '0p/tabs/tabs', locals: {tabs: m_tabs(c), link_tabs: get_link(c, 'tab'), tab: @tab } if d_tabla(c, :tabs) %>
 
 <!-- SELECTOR -->
@@ -10,13 +11,12 @@
 <%= render partial: '0p/tabla/menu_estados', locals: {estado: @estado, estados: m_estados(c), link_estados: get_link(c, 'estado') } if d_tabla(c, :estados) %>
 
 <!-- BOTON NUEVO OBJETO SI HAY MAS DE 15 ELEMENTOS DESPLEGADOS -->
-<%= render partial: '0p/tabla/nuevo', locals: {c: c} if d_tabla(c, :nuevo) and @coleccion.count > 15 %>
+<%= render partial: '0p/tabla/nuevo', locals: {c: c} if d_tabla(c, :nuevo) and a != 'seleccion' and @coleccion.count > 15 %>
 
 <!-- CUERPO TABLA -->
 <table class="table table-striped">
   <thead>
     <%= render partial: '0p/tabla/th', locals: {c: c} %>
-    <!--%= render partial: "#{c}/th" %-->
   </thead>
 
   <tbody>
@@ -25,4 +25,4 @@
   </tbody>
 </table>
 
-<%= render partial: '0p/tabla/nuevo', locals: {c: c} if d_tabla(c, :nuevo) %>
+<%= render partial: '0p/tabla/nuevo', locals: {c: c} if d_tabla(c, :nuevo) and a != 'seleccion' %>
