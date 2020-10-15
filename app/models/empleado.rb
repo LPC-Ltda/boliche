@@ -30,7 +30,7 @@ class Empleado < ApplicationRecord
 
 	belongs_to :empresa
 	belongs_to :rol
-	belongs_to :usuario
+	belongs_to :usuario, optional: true
 
     validates_presence_of :rut, :nombre, :apellido_paterno, :apellido_materno, :email, :empresa_id, :rol_id
     validates_uniqueness_of :rut

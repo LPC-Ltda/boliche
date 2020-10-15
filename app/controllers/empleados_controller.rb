@@ -28,7 +28,8 @@ class EmpleadosController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Empleado was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Empleado was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class EmpleadosController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(empleado_params)
-        format.html { redirect_to @objeto, notice: 'Empleado was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Empleado was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -55,8 +57,9 @@ class EmpleadosController < ApplicationController
   # DELETE /empleados/1.json
   def destroy
     @objeto.destroy
+    set_redireccion
     respond_to do |format|
-      format.html { redirect_to empleados_url, notice: 'Empleado was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Empleado was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

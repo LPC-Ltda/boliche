@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_192029) do
+ActiveRecord::Schema.define(version: 2020_10_15_021428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 2020_10_08_192029) do
     t.datetime "updated_at", null: false
     t.index ["adicional_id"], name: "index_agregados_on_adicional_id"
     t.index ["detalle_pedido_id"], name: "index_agregados_on_detalle_pedido_id"
+  end
+
+  create_table "categorias", force: :cascade do |t|
+    t.string "categoria"
+    t.integer "empresa_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_categorias_on_empresa_id"
   end
 
   create_table "clientes", force: :cascade do |t|
@@ -119,6 +127,10 @@ ActiveRecord::Schema.define(version: 2020_10_08_192029) do
     t.string "actualizado_por"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "empresa_id"
+    t.integer "categoria_id"
+    t.index ["categoria_id"], name: "index_productos_on_categoria_id"
+    t.index ["empresa_id"], name: "index_productos_on_empresa_id"
   end
 
   create_table "registros", force: :cascade do |t|
@@ -164,6 +176,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_192029) do
     t.string "actualizado_por"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "empresa_id"
+    t.index ["empresa_id"], name: "index_zonas_on_empresa_id"
   end
 
 end

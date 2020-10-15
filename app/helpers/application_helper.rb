@@ -26,6 +26,8 @@ module ApplicationHelper
 			controller.classify.constantize::LINK_SELECCION
 		when 'child_sel'
 			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::PADRE.singularize}_id=#{@objeto.id}"
+		when 'through'
+			"/#{controller}/new?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
 		end
 	end
 

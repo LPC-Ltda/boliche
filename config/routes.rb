@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categorias
   resources :adicionales do
     resources :agregados
   end
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   resources :empresas do
     match :estado, via: :get, on: :member
     resources :roles
+    resources :zonas
     resources :empleados
     resources :registros
   end
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
   end
   resources :zonas do
     match :estado, via: :get, on: :member
+    match :seleccion, via: :get, on: :collection
     resources :clientes
   end
 

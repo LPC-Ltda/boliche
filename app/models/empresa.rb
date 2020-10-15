@@ -41,7 +41,10 @@ class Empresa < ApplicationRecord
 	TIPO_NEW = 'normal'
 
 	has_many :roles
+	has_many :zonas
 	has_many :empleados
+	has_many :categorias
+	has_many :productos
 
 	has_many :registros
 

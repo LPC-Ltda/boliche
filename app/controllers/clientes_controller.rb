@@ -14,7 +14,9 @@ class ClientesController < ApplicationController
 
   # GET /clientes/new
   def new
-    @objeto = Cliente.new
+    @empresa = Empresa.find(params[:empresa_id])
+    @objeto = Cliente.new(estado: Cliente::ESTADOS[0])
+    @empresa.clientes << @objeto
   end
 
   # GET /clientes/1/edit

@@ -17,6 +17,11 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.plural 'Rol', 'Roles'
 	inflect.singular 'roles', 'rol'
 	inflect.singular 'Roles', 'Rol'
+
+	inflect.plural 'categoria', 'categorias'
+	inflect.plural 'Categoria', 'Categorias'
+	inflect.singular 'categorias', 'categoria'
+	inflect.singular 'Categorias', 'Categoria'
 end
 
 # These inflection rules are supported but not enabled by default:

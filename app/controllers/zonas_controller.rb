@@ -7,6 +7,11 @@ class ZonasController < ApplicationController
     @coleccion = Zona.all
   end
 
+  def seleccion
+    @link_seleccion = "/clientes/new?empresa_id=#{params[:empresa_id]}&zona_id="
+    @coleccion = Empresa.find(params[:empresa_id]).zonas
+  end
+
   # GET /zonas/1
   # GET /zonas/1.json
   def show
@@ -14,7 +19,7 @@ class ZonasController < ApplicationController
 
   # GET /zonas/new
   def new
-    @objeto = Zona.new(estado: Zona::ESTADOS[0])
+    @objeto = Zona.new(empresa_id: params[:empresa_id], estado: Zona::ESTADOS[0])
   end
 
   # GET /zonas/1/edit
@@ -71,11 +76,11 @@ class ZonasController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = "/recursos/tablas?ftab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
+      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.
     def zona_params
-      params.require(:zona).permit(:zona, :tarifa, :estado, :creado_por, :actualizado_por)
+      params.require(:zona).permit(:zona, :tarifa, :estado, :creado_por, :actualizado_por, :empresa_id)
     end
 end

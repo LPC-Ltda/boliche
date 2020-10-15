@@ -3,7 +3,7 @@ class Recurso < ApplicationRecord
 	TAB_ACTIONS = ['tablas']
 	TABLE_ACTIONS = ['tablas', 'zonas']
 
-	TABS = ['empresas', 'zonas']
+	TABS = ['empresas']
 
 	# CONTROL APLICACION
 	NO_TABLAS = ['registros']

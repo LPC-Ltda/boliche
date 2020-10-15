@@ -6,13 +6,16 @@ class Cliente < ApplicationRecord
 		tabs:    false,
 		paginas: false,
 		estados: true,
-		nuevo:   false
+		nuevo:   true
 	}
 
 	TABLA_FIELDS = ['nombre', 'email', 'dirección', 'telefono']
 
+	TIPO_NEW = 'through'
+	THROUGH_REF = 'empresas'
+
 	belongs_to :zona
-	belongs_to :usuario
+	belongs_to :usuario, optional: true
 
 	has_many :registros
 
