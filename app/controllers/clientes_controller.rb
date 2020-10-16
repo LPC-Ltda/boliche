@@ -15,7 +15,7 @@ class ClientesController < ApplicationController
   # GET /clientes/new
   def new
     @empresa = Empresa.find(params[:empresa_id])
-    @objeto = Cliente.new(estado: Cliente::ESTADOS[0])
+    @objeto = Cliente.new(zona_id: params[:zona_id], estado: Cliente::ESTADOS[0])
     @empresa.clientes << @objeto
   end
 
@@ -30,7 +30,8 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Cliente was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Cliente was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -44,7 +45,8 @@ class ClientesController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(cliente_params)
-        format.html { redirect_to @objeto, notice: 'Cliente was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Cliente was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -56,9 +58,10 @@ class ClientesController < ApplicationController
   # DELETE /clientes/1
   # DELETE /clientes/1.json
   def destroy
+    set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to clientes_url, notice: 'Cliente was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Cliente was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +70,10 @@ class ClientesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
       @objeto = Cliente.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

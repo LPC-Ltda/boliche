@@ -14,7 +14,7 @@ class ProductosController < ApplicationController
 
   # GET /productos/new
   def new
-    @objeto = Producto.new
+    @objeto = Producto.new(empresa_id: params[:empresa_id], categoria_id: params[:categoria_id], estado: Producto::ESTADOS[0])
   end
 
   # GET /productos/1/edit
@@ -28,7 +28,8 @@ class ProductosController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Producto was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Producto was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class ProductosController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(producto_params)
-        format.html { redirect_to @objeto, notice: 'Producto was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Producto was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -54,9 +56,10 @@ class ProductosController < ApplicationController
   # DELETE /productos/1
   # DELETE /productos/1.json
   def destroy
+    set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to productos_url, notice: 'Producto was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Producto was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +70,12 @@ class ProductosController < ApplicationController
       @objeto = Producto.find(params[:id])
     end
 
+    def set_redireccion
+      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
+    end
+
     # Only allow a list of trusted parameters through.
     def producto_params
-      params.require(:producto).permit(:producto, :disponibilidad, :demora_minutos, :estado, :creado_por, :actualizado_por)
+      params.require(:producto).permit(:producto, :disponibilidad, :demora_minutos, :estado, :creado_por, :actualizado_por, :empresa_id, :categoria_id)
     end
 end

@@ -9,9 +9,22 @@ class Cliente < ApplicationRecord
 		nuevo:   true
 	}
 
+
+	FORM_FIELDS = [
+		['nombre',              'entry'],
+		['email',               'entry'],
+		['direccion',           'entry'],
+		['telefono',            'entry'],
+		['zona_id',             'hidden'],
+		['estado',              'hidden'],
+		['creado_por',          'hidden'],
+		['actualizado_por',     'hidden']
+	]
+
 	TABLA_FIELDS = ['nombre', 'email', 'dirección', 'telefono']
 
-	TIPO_NEW = 'through'
+	TIPO_NEW = 'through_sel'
+	LINK_SELECCION = "/zonas/seleccion"
 	THROUGH_REF = 'empresas'
 
 	belongs_to :zona

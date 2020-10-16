@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :categorias
   resources :adicionales do
     resources :agregados
   end
   resources :agregados
+  resources :categorias do
+    match :seleccion, via: :get, on: :collection
+    resources :productos
+  end
   resources :clientes do
     resources :registros
   end
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
     resources :zonas
     resources :empleados
     resources :registros
+    resources :categorias
   end
   resources :pedidos do
     resources :detalle_pedidos

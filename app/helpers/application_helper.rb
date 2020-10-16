@@ -28,6 +28,8 @@ module ApplicationHelper
 			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::PADRE.singularize}_id=#{@objeto.id}"
 		when 'through'
 			"/#{controller}/new?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
+		when 'through_sel'
+			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
 		end
 	end
 
@@ -56,7 +58,8 @@ module ApplicationHelper
 	end
 
 	def has_child?(objeto)
-		objeto.class.reflect_on_all_associations(:has_many).map { |a| objeto.send(a.name).any? }.include?(true)
+		# NO MENJA BIEN EL CASO DE HAS_MANY THROUGH
+		objeto.class.reflect_on_all_associations(:has_many).map { |a| ( Recurso::NO_TABLAS.include?(a.name.to_s) ? 'false' : objeto.send(a.name).any? ) }.include?(true)
 	end
 	def link_estado(objeto)
 		"/#{objeto.class.downcase.pluralize}/estado?estado="
