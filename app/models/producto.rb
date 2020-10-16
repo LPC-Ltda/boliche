@@ -21,7 +21,11 @@ class Producto < ApplicationRecord
 		['actualizado_por',     'hidden']
 	]
 
- 	TABLA_FIELDS = ['producto', 'disponibilidad', 'demora_minutos']
+ 	TABLA_FIELDS = [
+ 		['producto', 'show'], 
+ 		['disponibilidad', 'normal'], 
+ 		['demora_minutos', 'normal']
+ 	]
 
 	TIPO_NEW = 'child_sel'
 	LINK_SELECCION = "/categorias/seleccion"

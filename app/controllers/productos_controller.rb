@@ -1,5 +1,5 @@
 class ProductosController < ApplicationController
-  before_action :set_producto, only: [:show, :edit, :update, :destroy]
+  before_action :set_producto, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /productos
   # GET /productos.json

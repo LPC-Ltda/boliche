@@ -1,5 +1,5 @@
 class EmpleadosController < ApplicationController
-  before_action :set_empleado, only: [:show, :edit, :update, :destroy]
+  before_action :set_empleado, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /empleados
   # GET /empleados.json

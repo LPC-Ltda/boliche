@@ -4,10 +4,11 @@
 
     <!-- TABS -->
     <% unless tabs.blank? %>
+      <!-- Recorre los TABS si no estan vaciós -->
       <% tabs.each do |t| %>
-        <!-- TAB(tab) -->
         <li class="nav-item">
-          <%= link_to t, "#{link_tabs}#{t}", class: "nav-link #{(t == tab ? 'active' : '')}" %>
+          <!-- COnstruye el TAB y destaca el que está activo -->
+          <%= link_to t, "#{link_tabs}#{t}", class: "nav-link #{(t == active ? 'active' : '')}" %>
         </li>
 
       <% end %>

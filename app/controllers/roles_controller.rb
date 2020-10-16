@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  before_action :set_rol, only: [:show, :edit, :update, :destroy]
+  before_action :set_rol, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /roles
   # GET /roles.json

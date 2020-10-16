@@ -17,7 +17,7 @@ class Categoria < ApplicationRecord
 		['actualizado_por', 'hidden']
 	]
 
-	TABLA_FIELDS = ['categoria']
+	TABLA_FIELDS = [['categoria', 'show']]
 
 	TIPO_NEW = 'child'
 	PADRE = 'empresas'

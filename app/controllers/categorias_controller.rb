@@ -1,5 +1,5 @@
 class CategoriasController < ApplicationController
-  before_action :set_categoria, only: [:show, :edit, :update, :destroy]
+  before_action :set_categoria, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /categorias
   # GET /categorias.json

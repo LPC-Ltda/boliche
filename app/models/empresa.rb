@@ -36,15 +36,18 @@ class Empresa < ApplicationRecord
 		['actualizado_por', 'hidden']
 	]
 
-	TABLA_FIELDS = ['rut', 'razon_social']
+	TABLA_FIELDS = [
+		['rut',          'show'], 
+		['razon_social', 'normal']
+	]
 
 	TIPO_NEW = 'normal'
 
 	has_many :roles
-	has_many :zonas
 	has_many :empleados
 	has_many :categorias
 	has_many :productos
+	has_many :zonas
 
 	has_many :registros
 
@@ -55,7 +58,7 @@ class Empresa < ApplicationRecord
 
 	validates :rut, rut_valido: true
 
-
+	# Puede estar obsoleto, se implementó en application_helper
 	def rut_display
 		rut_base = self.rut.tr('.-', '').length == 8 ? '0'+self.rut.tr('.-', '') : self.rut.tr('.-', '')
 		rut_base.reverse.insert(1, '-').insert(5, '.').insert(9, '.').reverse

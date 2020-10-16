@@ -21,7 +21,12 @@ class Cliente < ApplicationRecord
 		['actualizado_por',     'hidden']
 	]
 
-	TABLA_FIELDS = ['nombre', 'email', 'dirección', 'telefono']
+	TABLA_FIELDS = [
+		['nombre', 'normal'], 
+		['email', 'show'], 
+		['direccion', 'normal'], 
+		['telefono', 'normal']
+	]
 
 	TIPO_NEW = 'through_sel'
 	LINK_SELECCION = "/zonas/seleccion"

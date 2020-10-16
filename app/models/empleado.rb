@@ -22,7 +22,11 @@ class Empleado < ApplicationRecord
 		['actualizado_por',     'hidden']
 	]
 
- 	TABLA_FIELDS = ['rut', 'nombre', 'email']
+ 	TABLA_FIELDS = [
+ 		['rut', 'show'], 
+ 		['nombre', 'display'], 
+ 		['email', 'normal']
+ 	]
 
 	TIPO_NEW = 'child_sel'
 	LINK_SELECCION = "/roles/seleccion"
@@ -37,11 +41,12 @@ class Empleado < ApplicationRecord
 
 	validates :rut, rut_valido: true
 
+	# Puede estar obsoleto, se implementó en application_helper
 	def rut_display
 		rut_base = self.rut.tr('.-', '').length == 8 ? '0'+self.rut.tr('.-', '') : self.rut.tr('.-', '')
 		rut_base.reverse.insert(1, '-').insert(5, '.').insert(9, '.').reverse
 	end
 	def nombre_display
-		"#{self.rut_display} | #{self.nombre} #{self.apellido_paterno} #{self.apellido_materno}"
+		"#{self.nombre} #{self.apellido_paterno} #{self.apellido_materno}"
 	end
 end

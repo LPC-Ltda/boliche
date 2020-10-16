@@ -1,7 +1,9 @@
-<% if Recurso::TAB_ACTIONS.include?(action_name) %>
-	<%= render partial: '0p/tabs/tabs', locals: {tabs: m_tabs(controller_name), link_tabs: get_link(controller_name, 'ftab'), tab: @ftab } %>
+<!-- Pregunta si esta acción despliega TABS, si es así los despliega -->
+<% if r_tabs?(action_name) %>
+	<%= render partial: '0p/tabs/tabs', locals: {tabs: m_tabs(controller_name), link_tabs: get_link(controller_name, 'ftab'), active: @ftab } %>
 <% end %>
 
-<% if Recurso::TABLE_ACTIONS.include?(action_name) %>
+<!-- Pregunta si esta acción despliega una TABLA, si es asi la despliega -->
+<% if r_tabla?(action_name) %>
 	<%= render partial: '0p/tabla/tabla', locals: {c: @ftab, a: 'index'} %>
 <% end %>

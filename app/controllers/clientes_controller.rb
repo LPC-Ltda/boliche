@@ -1,5 +1,5 @@
 class ClientesController < ApplicationController
-  before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+  before_action :set_cliente, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /clientes
   # GET /clientes.json
@@ -73,7 +73,7 @@ class ClientesController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
+      @redireccion = "/empresas/#{@objeto.empresas[0].id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

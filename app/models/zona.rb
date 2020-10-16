@@ -22,7 +22,10 @@ class Zona < ApplicationRecord
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']
 	]
-	TABLA_FIELDS = ['zona', 'tarifa']
+	TABLA_FIELDS = [
+		['zona', 'show'], 
+		['tarifa', 'normal']
+	]
 
 	TIPO_NEW = 'child'
 	PADRE = 'empresas'

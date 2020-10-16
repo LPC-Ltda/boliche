@@ -17,7 +17,7 @@ class Rol < ApplicationRecord
 		['actualizado_por', 'hidden']
 	]
 
-	TABLA_FIELDS = ['rol']
+	TABLA_FIELDS = [['rol', 'show']]
 
 	TIPO_NEW = 'child'
 	PADRE = 'empresas'

@@ -1,5 +1,5 @@
 class AgregadosController < ApplicationController
-  before_action :set_agregado, only: [:show, :edit, :update, :destroy]
+  before_action :set_agregado, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /agregados
   # GET /agregados.json

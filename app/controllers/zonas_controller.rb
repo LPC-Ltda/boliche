@@ -1,5 +1,5 @@
 class ZonasController < ApplicationController
-  before_action :set_zona, only: [:show, :edit, :update, :destroy, :estado]
+  before_action :set_zona, only: [:show, :edit, :update, :destroy, :estado :estado]
 
   # GET /zonas
   # GET /zonas.json

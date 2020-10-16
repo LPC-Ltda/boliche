@@ -1,5 +1,5 @@
 class AdicionalesController < ApplicationController
-  before_action :set_adicional, only: [:show, :edit, :update, :destroy]
+  before_action :set_adicional, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /adicionales
   # GET /adicionales.json
