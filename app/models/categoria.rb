@@ -9,6 +9,15 @@ class Categoria < ApplicationRecord
 		nuevo:   true
 	}
 
+	D_SHOW = {
+		titulo:   true,
+		nav:      false,
+		detalle:  true,
+		tabs:     true,
+		adjuntos: false,
+		tablas:   false
+	}
+
 	FORM_FIELDS = [
 		['categoria',        'entry'],
 		['empresa_id',      'hidden'],
@@ -17,6 +26,12 @@ class Categoria < ApplicationRecord
 		['actualizado_por', 'hidden']
 	]
 
+	SHOW_FIELDS = [
+		['categoria',       'normal'],
+		['estado',          'hidden'],
+		['creado_por',      'hidden'],
+		['actualizado_por', 'hidden']
+	]
 	TABLA_FIELDS = [['categoria', 'show']]
 
 	TIPO_NEW = 'child'
@@ -25,4 +40,8 @@ class Categoria < ApplicationRecord
 	belongs_to :empresa
 
 	has_many :productos
+
+	def nombre_display
+		self.categoria
+	end
 end

@@ -14,6 +14,14 @@ class Zona < ApplicationRecord
 		estados: true,
 		nuevo:   true
 	}
+	D_SHOW = {
+		titulo:   true,
+		nav:      false,
+		detalle:  true,
+		tabs:     true,
+		adjuntos: false,
+		tablas:   false
+	}
 	FORM_FIELDS = [
 		['zona',             'entry'],
 		['tarifa',           'entry'],
@@ -26,10 +34,20 @@ class Zona < ApplicationRecord
 		['zona', 'show'], 
 		['tarifa', 'normal']
 	]
+	SHOW_FIELDS = [
+		['zona',             'normal'],
+		['estado',          'hidden'],
+		['creado_por',      'hidden'],
+		['actualizado_por', 'hidden']
+	]
 
 	TIPO_NEW = 'child'
 	PADRE = 'empresas'
  	
     validates_presence_of :zona, :tarifa
     validates_uniqueness_of :zona
+
+	def nombre_display
+		self.zona
+	end
 end

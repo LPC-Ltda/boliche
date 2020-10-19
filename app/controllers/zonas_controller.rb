@@ -15,6 +15,11 @@ class ZonasController < ApplicationController
   # GET /zonas/1
   # GET /zonas/1.json
   def show
+    @tab = params[:tab].blank? ? 'clientes' : params[:tab]
+    @estado = params[:estado].blank? ? @tab.classify.constantize::ESTADOS[0] : params[:estado]
+    # CLientes de una zona en particular
+    @coleccion = @objeto.empresa.send(alias_tabla(@tab)).where(estado: @estado)
+    # @coleccion = @tab == 'clientes' ? @objeto.clientes.where(estado: @estado) : @tab.classify.constantize.where(empresa_id: @objeto.id, estado: @estado)
   end
 
   # GET /zonas/new

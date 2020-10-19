@@ -71,7 +71,7 @@ module ApplicationHelper
 	end
 
 	def has_many_tabs(controller)
-		controller.classify.constantize.reflect_on_all_associations.map {|a| a.name.to_s} - Recurso::JOIN_TABLES
+		controller.classify.constantize.reflect_on_all_associations(:has_many).map {|a| a.name.to_s} - Recurso::JOIN_TABLES
 	end
 
 	def get_new_link(controller)

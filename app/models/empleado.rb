@@ -9,7 +9,16 @@ class Empleado < ApplicationRecord
 		nuevo:   true
 	}
 
-	FORM_FIELDS = [
+	D_SHOW = {
+		titulo:   true,
+		nav:      false,
+		detalle:  true,
+		tabs:     false,
+		adjuntos: false,
+		tablas:   false
+	}
+ 	
+ 	FORM_FIELDS = [
 		['rut',                 'entry'],
 		['nombre',              'entry'],
 		['apellido_paterno',    'entry'],
@@ -27,6 +36,16 @@ class Empleado < ApplicationRecord
  		['nombre', 'display'], 
  		['email', 'normal']
  	]
+	SHOW_FIELDS = [
+		['rut',              'normal'],
+		['nombre',           'normal'],
+		['apellido_paterno', 'normal'],
+		['apellido_materno', 'normal'],
+		['email',            'normal'],
+		['estado',           'hidden'],
+		['creado_por',       'hidden'],
+		['actualizado_por',  'hidden']
+	]
 
 	TIPO_NEW = 'child_sel'
 	LINK_SELECCION = "/roles/seleccion"

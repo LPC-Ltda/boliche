@@ -9,6 +9,15 @@ class Producto < ApplicationRecord
 		nuevo:   true
 	}
 
+	D_SHOW = {
+		titulo:   true,
+		nav:      false,
+		detalle:  true,
+		tabs:     false,
+		adjuntos: false,
+		tablas:   false
+	}
+
 	FORM_FIELDS = [
 		['producto',            'entry'],
 		['disponibilidad',      'entry'],
@@ -26,6 +35,15 @@ class Producto < ApplicationRecord
  		['disponibilidad', 'normal'], 
  		['demora_minutos', 'normal']
  	]
+	SHOW_FIELDS = [
+		['producto',         'normal'],
+		['disponibilidad',   'normal'],
+		['demora_minutos',   'normal'],
+		['estado',           'hidden'],
+		['creado_por',       'hidden'],
+		['actualizado_por',  'hidden']
+	]
+
 
 	TIPO_NEW = 'child_sel'
 	LINK_SELECCION = "/categorias/seleccion"
@@ -37,4 +55,8 @@ class Producto < ApplicationRecord
 	has_many :detalle_pedidos
 
 	has_many :pedidos, through: :detalle_pedidos
+
+	def nombre_display
+		self.producto
+	end
 end
