@@ -10,7 +10,7 @@ class Recurso < ApplicationRecord
 	# TABS de la acción "tablas" de "recursos_controller"
 	TABS = ['empresas']
 
-	# CONTROL APLICACION
-	NO_TABLAS = ['registros']
+	# estoy tratando de generalizar el despliegue de tablas JOIN
+	JOIN_TABLES = ['registros']
 
 end

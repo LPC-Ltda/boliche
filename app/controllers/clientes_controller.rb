@@ -15,8 +15,8 @@ class ClientesController < ApplicationController
   # GET /clientes/new
   def new
     @empresa = Empresa.find(params[:empresa_id])
-    @objeto = Cliente.new(zona_id: params[:zona_id], estado: Cliente::ESTADOS[0])
-    @empresa.clientes << @objeto
+    @r = @empresa.registros.create(estado: Registro::ESTADOS[0], cliente: Cliente.new(estado: Cliente::ESTADOS[0], zona_id: params[:zona_id]))
+    @objeto = @r.cliente
   end
 
   # GET /clientes/1/edit

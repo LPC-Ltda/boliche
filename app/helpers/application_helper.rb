@@ -17,6 +17,15 @@ module ApplicationHelper
 	def m_estados(controller)
 		controller.classify.constantize::ESTADOS
 	end
+	# valida el uso de alias en las tablas
+	def alias_tabla(controller)
+		case controller
+		when 'clientes'
+			'registros'
+		else
+			controller
+		end
+	end
 	# En un modelo donde "ftab" es el tab del frame, "tab" el del modelo y "estado" el que controla los estados de la tabla
 	# este método entrega el link para el manejo de cada tab entregando el controlador y la variable {'ftab', 'tab', 'estado'}
 	def get_link(c, var)
@@ -62,7 +71,7 @@ module ApplicationHelper
 	end
 
 	def has_many_tabs(controller)
-		controller.classify.constantize.reflect_on_all_associations.map {|a| a.name.to_s} - Recurso::NO_TABLAS
+		controller.classify.constantize.reflect_on_all_associations.map {|a| a.name.to_s} - Recurso::JOIN_TABLES
 	end
 
 	def get_new_link(controller)
@@ -79,6 +88,8 @@ module ApplicationHelper
 			"/#{controller}/new?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
 		when 'through_sel'
 			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
+		when 'join_display'
+			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
 		end
 	end
 
@@ -94,9 +105,13 @@ module ApplicationHelper
 
 	def has_child?(objeto)
 		# NO MENJA BIEN EL CASO DE HAS_MANY THROUGH
-		objeto.class.reflect_on_all_associations(:has_many).map { |a| ( Recurso::NO_TABLAS.include?(a.name.to_s) ? 'false' : objeto.send(a.name).any? ) }.include?(true)
+		objeto.class.reflect_on_all_associations(:has_many).map { |a| ( Recurso::JOIN_TABLES.include?(a.name.to_s) ? 'false' : objeto.send(a.name).any? ) }.include?(true)
 	end
 	def link_estado(objeto)
 		"/#{objeto.class.downcase.pluralize}/estado?estado="
 	end
+	def f_tabla(objeto)
+		objeto.send(objeto.class::F_TABLA.singularize)
+	end
+
 end

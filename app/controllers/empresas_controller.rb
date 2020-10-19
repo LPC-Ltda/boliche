@@ -12,7 +12,10 @@ class EmpresasController < ApplicationController
   def show
     @tab = params[:tab].blank? ? 'clientes' : params[:tab]
     @estado = params[:estado].blank? ? @tab.classify.constantize::ESTADOS[0] : params[:estado]
-    @coleccion = @tab == 'clientes' ? @objeto.clientes.where(estado: @estado) : @tab.classify.constantize.where(empresa_id: @objeto.id, estado: @estado)
+    # tenemos que cubrir todos los casos
+    # 1. has_many : }
+    @coleccion = @objeto.send(alias_tabla(@tab)).where(estado: @estado)
+    # @coleccion = @tab == 'clientes' ? @objeto.clientes.where(estado: @estado) : @tab.classify.constantize.where(empresa_id: @objeto.id, estado: @estado)
   end
 
   # GET /empresas/new

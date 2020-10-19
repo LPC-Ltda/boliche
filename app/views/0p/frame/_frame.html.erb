@@ -5,5 +5,5 @@
 
 <!-- Pregunta si esta acción despliega una TABLA, si es asi la despliega -->
 <% if r_tabla?(action_name) %>
-	<%= render partial: '0p/tabla/tabla', locals: {c: @ftab, a: 'index'} %>
+	<%= render partial: '0p/tabla/tabla', locals: {c: alias_tabla(@ftab), a: 'index'} %>
 <% end %>
