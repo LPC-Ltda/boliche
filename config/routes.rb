@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     match :tablas, via: :get, on: :collection
   end
   resources :registros do
+    match :estado, via: :get, on: :member
     resources :pedidos
   end
   resources :roles do

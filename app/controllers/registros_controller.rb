@@ -1,5 +1,5 @@
 class RegistrosController < ApplicationController
-  before_action :set_registro, only: [:show, :edit, :update, :destroy]
+  before_action :set_registro, only: [:show, :edit, :update, :destroy, :estado]
 
   # GET /registros
   # GET /registros.json
@@ -65,6 +65,10 @@ class RegistrosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_registro
       @objeto = Registro.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.
