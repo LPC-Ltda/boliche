@@ -7,6 +7,11 @@ class ProductosController < ApplicationController
     @coleccion = Producto.all
   end
 
+  def seleccion
+    @link_seleccion = "/detalle_pedidos/new?pedido_id=#{params[:pedido_id]}&producto_id="
+    @coleccion = Empresa.find(Pedido.find(params[:pedido_id]).registro.empresa.id).productos
+  end
+
   # GET /productos/1
   # GET /productos/1.json
   def show

@@ -1,9 +1,8 @@
 class Empresa < ApplicationRecord
-
-	TABS = []
-
+	# MODELO
 	ESTADOS = ['ingreso', 'activa', 'baja']
 
+	# TABLA
 	D_TABLA = {
 		titulo:  true,
 		tabs:    false,
@@ -12,6 +11,22 @@ class Empresa < ApplicationRecord
 		nuevo:   true
 	}
 
+	TABLA_FIELDS = [
+		['rut',          'show'], 
+		['razon_social', 'normal']
+	]
+
+	TIPO_NEW = 'normal'
+
+	FORM_FIELDS = [
+		['rut',             'entry'],
+		['razon_social',    'entry'],
+		['estado',          'hidden'],
+		['creado_por',      'hidden'],
+		['actualizado_por', 'hidden']
+	]
+
+	# SHOW
 	D_SHOW = {
 		titulo:   true,
 		nav:      false,
@@ -21,27 +36,12 @@ class Empresa < ApplicationRecord
 		tablas:   false
 	}
 
-	FORM_FIELDS = [
-		['rut',             'entry'],
-		['razon_social',    'entry'],
-		['estado',          'hidden'],
-		['creado_por',      'hidden'],
-		['actualizado_por', 'hidden']
-	]
 	SHOW_FIELDS = [
-		['rut',             'normal'],
-		['razon_social',    'normal'],
 		['estado',          'hidden'],
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']
 	]
 
-	TABLA_FIELDS = [
-		['rut',          'show'], 
-		['razon_social', 'normal']
-	]
-
-	TIPO_NEW = 'normal'
 
 	has_many :roles
 	has_many :empleados
@@ -63,7 +63,7 @@ class Empresa < ApplicationRecord
 		rut_base = self.rut.tr('.-', '').length == 8 ? '0'+self.rut.tr('.-', '') : self.rut.tr('.-', '')
 		rut_base.reverse.insert(1, '-').insert(5, '.').insert(9, '.').reverse
 	end
-	def nombre_display
-		self.razon_social
+	def show_title
+		"#{ApplicationController.helpers.d_rut(self.rut)} | #{self.razon_social}"
 	end
 end

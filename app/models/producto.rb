@@ -1,6 +1,6 @@
 class Producto < ApplicationRecord
-	TABS = []
 	ESTADOS = ['activo', 'baja']
+
 	D_TABLA = {
 		titulo:  false,
 		tabs:    false,
@@ -9,14 +9,15 @@ class Producto < ApplicationRecord
 		nuevo:   true
 	}
 
-	D_SHOW = {
-		titulo:   true,
-		nav:      false,
-		detalle:  true,
-		tabs:     false,
-		adjuntos: false,
-		tablas:   false
-	}
+ 	TABLA_FIELDS = [
+ 		['producto', 'show'], 
+ 		['disponibilidad', 'normal'], 
+ 		['demora_minutos', 'normal']
+ 	]
+
+	TIPO_NEW = 'child_sel'
+	LINK_SELECCION = "/categorias/seleccion"
+	PADRE = 'empresas'
 
 	FORM_FIELDS = [
 		['producto',            'entry'],
@@ -30,13 +31,16 @@ class Producto < ApplicationRecord
 		['actualizado_por',     'hidden']
 	]
 
- 	TABLA_FIELDS = [
- 		['producto', 'show'], 
- 		['disponibilidad', 'normal'], 
- 		['demora_minutos', 'normal']
- 	]
+	D_SHOW = {
+		titulo:   true,
+		nav:      false,
+		detalle:  true,
+		tabs:     false,
+		adjuntos: false,
+		tablas:   false
+	}
+
 	SHOW_FIELDS = [
-		['producto',         'normal'],
 		['disponibilidad',   'normal'],
 		['demora_minutos',   'normal'],
 		['estado',           'hidden'],
@@ -45,10 +49,6 @@ class Producto < ApplicationRecord
 	]
 
 
-	TIPO_NEW = 'child_sel'
-	LINK_SELECCION = "/categorias/seleccion"
-	PADRE = 'empresas'
-
 	belongs_to :empresa
 	belongs_to :categoria
 
@@ -56,7 +56,7 @@ class Producto < ApplicationRecord
 
 	has_many :pedidos, through: :detalle_pedidos
 
-	def nombre_display
+	def show_title
 		self.producto
 	end
 end

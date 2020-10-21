@@ -8,6 +8,19 @@ class Registro < ApplicationRecord
 		estados: true,
 		nuevo:   true
 	}
+
+	TABLA_FIELDS = [
+		['nombre', 'fnormal'], 
+		['email', 'fshow'], 
+		['direccion', 'fnormal'], 
+		['telefono', 'fnormal']
+	]
+
+	TIPO_NEW = 'join_display'
+	LINK_SELECCION = "/zonas/seleccion"
+	THROUGH_REF = 'empresas'
+	F_TABLA = 'clientes'
+
 	D_SHOW = {
 		titulo:   true,
 		nav:      false,
@@ -17,14 +30,7 @@ class Registro < ApplicationRecord
 		tablas:   false
 	}
 
-	TABLA_FIELDS = [
-		['nombre', 'fnormal'], 
-		['email', 'fshow'], 
-		['direccion', 'fnormal'], 
-		['telefono', 'fnormal']
-	]
 	SHOW_FIELDS = [
-		['nombre',          'fnormal'],
 		['email',           'fnormal'],
 		['direccion',       'fnormal'],
 		['telefono',        'fnormal'],
@@ -33,17 +39,12 @@ class Registro < ApplicationRecord
 		['actualizado_por', 'hidden']
 	]
 
-	TIPO_NEW = 'join_display'
-	LINK_SELECCION = "/zonas/seleccion"
-	THROUGH_REF = 'empresas'
-	F_TABLA = 'clientes'
-
 	belongs_to :empresa
 	belongs_to :cliente
 
 	has_many :pedidos
 
-	def nombre_display
+	def show_title
 		self.cliente.nombre
 	end
 end

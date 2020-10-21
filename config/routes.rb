@@ -30,11 +30,13 @@ Rails.application.routes.draw do
     resources :registros
   end
   resources :pedidos do
+    match :nuevo, via: :get, on: :collection
     match :estado, via: :get, on: :member
     resources :detalle_pedidos
   end
   resources :productos do
     match :estado, via: :get, on: :member
+    match :seleccion, via: :get, on: :collection
     resources :detalle_pedidos
   end
   resources :recursos do

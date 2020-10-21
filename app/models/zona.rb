@@ -1,9 +1,5 @@
 class Zona < ApplicationRecord
-	belongs_to :empresa
 
-	has_many :clientes
-
-	TABS = []
 	ESTADOS = ['activa', 'baja']
 
 	D_TABLA = {
@@ -14,14 +10,15 @@ class Zona < ApplicationRecord
 		estados: true,
 		nuevo:   true
 	}
-	D_SHOW = {
-		titulo:   true,
-		nav:      false,
-		detalle:  true,
-		tabs:     true,
-		adjuntos: false,
-		tablas:   false
-	}
+
+	TABLA_FIELDS = [
+		['zona', 'show'], 
+		['tarifa', 'normal']
+	]
+
+	TIPO_NEW = 'child'
+	PADRE = 'empresas'
+ 	
 	FORM_FIELDS = [
 		['zona',             'entry'],
 		['tarifa',           'entry'],
@@ -30,10 +27,16 @@ class Zona < ApplicationRecord
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']
 	]
-	TABLA_FIELDS = [
-		['zona', 'show'], 
-		['tarifa', 'normal']
-	]
+
+	D_SHOW = {
+		titulo:   true,
+		nav:      false,
+		detalle:  true,
+		tabs:     true,
+		adjuntos: false,
+		tablas:   false
+	}
+
 	SHOW_FIELDS = [
 		['zona',             'normal'],
 		['estado',          'hidden'],
@@ -41,13 +44,14 @@ class Zona < ApplicationRecord
 		['actualizado_por', 'hidden']
 	]
 
-	TIPO_NEW = 'child'
-	PADRE = 'empresas'
- 	
+	belongs_to :empresa
+
+	has_many :clientes
+
     validates_presence_of :zona, :tarifa
     validates_uniqueness_of :zona
 
-	def nombre_display
+	def show_title
 		self.zona
 	end
 end

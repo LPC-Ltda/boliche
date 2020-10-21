@@ -1,8 +1,10 @@
 <% c.classify.constantize::SHOW_FIELDS.each do |field| %>
-	<% case field[1] %>
-	<% when 'normal' %>
-	  <p><%= "#{field[0]} : #{o[field[0]]}" %></br></p>
-	<% when 'fnormal' %>
-	  <p><%= "#{field[0]} : #{ f_tabla(o).send(field[0]) }" %></br></p>
-	<% end %>
+	<p>
+		<% case field[1] %>
+		<% when 'normal' %>
+		  <%= "#{field[0]} : #{o[field[0]]}" %>
+		<% when 'fnormal' %>
+		  <%= "#{field[0]} : #{ f_tabla(o).send(field[0]) }" %>
+		<% end %>
+	</p>
 <% end %>

@@ -10,11 +10,23 @@ class PedidosController < ApplicationController
   # GET /pedidos/1
   # GET /pedidos/1.json
   def show
+    @tab = params[:tab].blank? ? 'detalle_pedidos' : params[:tab]
+    @estado = params[:estado].blank? ? @tab.classify.constantize::ESTADOS[0] : params[:estado]
+    # tenemos que cubrir todos los casos
+    # 1. has_many : }
+    @coleccion = @objeto.send(alias_tabla(@tab)).where(estado: @estado)
+    # @coleccion = @tab == 'clientes' ? @objeto.clientes.where(estado: @estado) : @tab.classify.constantize.where(empresa_id: @objeto.id, estado: @estado)
   end
 
   # GET /pedidos/new
   def new
     @objeto = Pedido.new
+  end
+  def nuevo
+    puts 'entro'
+    @objeto = Pedido.new(registro_id: params[:registro_id], hora_pedido: DateTime.now, estado: Pedido::ESTADOS[0])
+    @objeto.save
+    redirect_to @objeto
   end
 
   # GET /pedidos/1/edit

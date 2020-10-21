@@ -1,4 +1,8 @@
 module ApplicationHelper
+	# Obtiene los controladores que no despliegan menu
+	def nomenu?(controller)
+		Recurso::NOMENU_CONTROLLERS.include?(controller)
+	end
 	# Pregunta si la "accion" del "recursos_controller" despluega TABS
 	# "_frame.html.erb"
 	def r_tabs?(accion)
@@ -8,6 +12,9 @@ module ApplicationHelper
 	# "_frame.html.erb"
 	def r_tabla?(accion)
 		Recurso::TABLE_ACTIONS.include?(accion)
+	end
+	def tabs?(controller)
+		Recurso::TABS_CONTROLLERS.include?(controller)
 	end
 	# Obtiene los TABS de un modelo usando el controlador
 	def m_tabs(controller)
@@ -38,7 +45,7 @@ module ApplicationHelper
 			if action_name == 'show'
 				has_many_tabs(controller_name).empty? ? "/#{controller_name}/#{@objeto.id}?estado=" : "/#{controller_name}/#{@objeto.id}?tab=#{@tab}&estado="
 			else
-				m_tabs(c).empty? ? "/#{controller_name}/#{action_name}?ftab=#{@ftab}&estado=" : "/#{controller_name}/#{action_name}?ftab=#{@ftab}&tab=#{@tab}&estado="
+				tabs?(c) ? "/#{controller_name}/#{action_name}?ftab=#{@ftab}&tab=#{@tab}&estado=" : "/#{controller_name}/#{action_name}?ftab=#{@ftab}&estado="
 			end
 		end
 	end
@@ -80,6 +87,8 @@ module ApplicationHelper
 			"/#{controller}/new"
 		when 'child'
 			"/#{controller.classify.constantize::PADRE}/#{@objeto.id}/#{controller}/new"
+		when 'nuevo'
+			"/#{controller}/nuevo?#{@objeto.class.name.downcase}_id=#{@objeto.id}"
 		when 'seleccion'
 			controller.classify.constantize::LINK_SELECCION
 		when 'child_sel'
@@ -90,6 +99,8 @@ module ApplicationHelper
 			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
 		when 'join_display'
 			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
+		when 'detalle_pedido'
+			"#{controller.classify.constantize::LINK_SELECCION}?empresa_id=#{@objeto.registro.empresa.id}&pedido_id=#{@objeto.id}"
 		end
 	end
 

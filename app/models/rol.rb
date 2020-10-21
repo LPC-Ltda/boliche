@@ -1,6 +1,6 @@
 class Rol < ApplicationRecord
-	TABS = []
 	ESTADOS = ['activo', 'baja']
+
 	D_TABLA = {
 		titulo:  false,
 		tabs:    false,
@@ -8,6 +8,18 @@ class Rol < ApplicationRecord
 		estados: true,
 		nuevo:   true
 	}
+
+	TABLA_FIELDS = [['rol', 'show']]
+	TIPO_NEW = 'child'
+	PADRE = 'empresas'
+
+	FORM_FIELDS = [
+		['rol',             'entry'],
+		['empresa_id',      'hidden'],
+		['estado',          'hidden'],
+		['creado_por',      'hidden'],
+		['actualizado_por', 'hidden']
+	]
 
 	D_SHOW = {
 		titulo:   true,
@@ -18,31 +30,18 @@ class Rol < ApplicationRecord
 		tablas:   false
 	}
 
-	FORM_FIELDS = [
-		['rol',             'entry'],
-		['empresa_id',      'hidden'],
-		['estado',          'hidden'],
-		['creado_por',      'hidden'],
-		['actualizado_por', 'hidden']
-	]
-
 	SHOW_FIELDS = [
-		['rol',             'normal'],
 		['estado',          'hidden'],
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']
 	]
 
-	TABLA_FIELDS = [['rol', 'show']]
-
-	TIPO_NEW = 'child'
-	PADRE = 'empresas'
 
   	belongs_to :empresa
 
 	has_many :empleados
 
-	def nombre_display
+	def show_title
 		self.rol
 	end
 end

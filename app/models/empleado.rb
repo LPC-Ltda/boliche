@@ -1,6 +1,6 @@
 class Empleado < ApplicationRecord
-	TABS = []
 	ESTADOS = ['activo', 'baja']
+
 	D_TABLA = {
 		titulo:  false,
 		tabs:    false,
@@ -9,15 +9,16 @@ class Empleado < ApplicationRecord
 		nuevo:   true
 	}
 
-	D_SHOW = {
-		titulo:   true,
-		nav:      false,
-		detalle:  true,
-		tabs:     false,
-		adjuntos: false,
-		tablas:   false
-	}
- 	
+ 	TABLA_FIELDS = [
+ 		['rut', 'show'], 
+ 		['nombre', 'display'], 
+ 		['email', 'normal']
+ 	]
+
+	TIPO_NEW = 'child_sel'
+	LINK_SELECCION = "/roles/seleccion"
+	PADRE = 'empresas'
+
  	FORM_FIELDS = [
 		['rut',                 'entry'],
 		['nombre',              'entry'],
@@ -31,25 +32,21 @@ class Empleado < ApplicationRecord
 		['actualizado_por',     'hidden']
 	]
 
- 	TABLA_FIELDS = [
- 		['rut', 'show'], 
- 		['nombre', 'display'], 
- 		['email', 'normal']
- 	]
+	D_SHOW = {
+		titulo:   true,
+		nav:      false,
+		detalle:  true,
+		tabs:     false,
+		adjuntos: false,
+		tablas:   false
+	}
+ 	
 	SHOW_FIELDS = [
-		['rut',              'normal'],
-		['nombre',           'normal'],
-		['apellido_paterno', 'normal'],
-		['apellido_materno', 'normal'],
 		['email',            'normal'],
 		['estado',           'hidden'],
 		['creado_por',       'hidden'],
 		['actualizado_por',  'hidden']
 	]
-
-	TIPO_NEW = 'child_sel'
-	LINK_SELECCION = "/roles/seleccion"
-	PADRE = 'empresas'
 
 	belongs_to :empresa
 	belongs_to :rol
@@ -67,5 +64,8 @@ class Empleado < ApplicationRecord
 	end
 	def nombre_display
 		"#{self.nombre} #{self.apellido_paterno} #{self.apellido_materno}"
+	end
+	def show_title
+		"#{ApplicationController.helpers.d_rut(self.rut)} | #{self.nombre} #{self.apellido_paterno} #{self.apellido_materno}"
 	end
 end

@@ -1,5 +1,4 @@
 class Cliente < ApplicationRecord
-	TABS = []
 	ESTADOS = ['activo', 'baja']
 
 	FORM_FIELDS = [

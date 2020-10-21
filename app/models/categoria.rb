@@ -1,6 +1,6 @@
 class Categoria < ApplicationRecord
-	TABS = []
 	ESTADOS = ['activa', 'baja']
+
 	D_TABLA = {
 		titulo:  false,
 		tabs:    false,
@@ -8,6 +8,19 @@ class Categoria < ApplicationRecord
 		estados: true,
 		nuevo:   true
 	}
+
+	TABLA_FIELDS = [['categoria', 'show']]
+
+	TIPO_NEW = 'child'
+	PADRE = 'empresas'
+
+	FORM_FIELDS = [
+		['categoria',        'entry'],
+		['empresa_id',      'hidden'],
+		['estado',          'hidden'],
+		['creado_por',      'hidden'],
+		['actualizado_por', 'hidden']
+	]
 
 	D_SHOW = {
 		titulo:   true,
@@ -18,30 +31,18 @@ class Categoria < ApplicationRecord
 		tablas:   false
 	}
 
-	FORM_FIELDS = [
-		['categoria',        'entry'],
-		['empresa_id',      'hidden'],
-		['estado',          'hidden'],
-		['creado_por',      'hidden'],
-		['actualizado_por', 'hidden']
-	]
-
 	SHOW_FIELDS = [
 		['categoria',       'normal'],
 		['estado',          'hidden'],
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']
 	]
-	TABLA_FIELDS = [['categoria', 'show']]
-
-	TIPO_NEW = 'child'
-	PADRE = 'empresas'
 
 	belongs_to :empresa
 
 	has_many :productos
 
-	def nombre_display
+	def show_title
 		self.categoria
 	end
 end
