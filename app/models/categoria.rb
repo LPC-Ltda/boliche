@@ -11,8 +11,7 @@ class Categoria < ApplicationRecord
 
 	TABLA_FIELDS = [['categoria', 'show']]
 
-	TIPO_NEW = 'child'
-	PADRE = 'empresas'
+	TIPO_NEW = 'child_new'
 
 	FORM_FIELDS = [
 		['categoria',        'entry'],
@@ -32,7 +31,6 @@ class Categoria < ApplicationRecord
 	}
 
 	SHOW_FIELDS = [
-		['categoria',       'normal'],
 		['estado',          'hidden'],
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']

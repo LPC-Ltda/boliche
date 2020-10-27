@@ -9,7 +9,7 @@ class RolesController < ApplicationController
 
   def seleccion
     @link_seleccion = "/empleados/new?empresa_id=#{params[:empresa_id]}&rol_id="
-    @coleccion = Empresa.find(params[:empresa_id]).roles
+    @coleccion = Rol.all
   end
 
   # GET /roles/1
@@ -25,7 +25,7 @@ class RolesController < ApplicationController
 
   # GET /roles/new
   def new
-    @objeto = Rol.new(empresa_id: params[:empresa_id], estado: Rol::ESTADOS[0])
+    @objeto = Rol.new(estado: Rol::ESTADOS[0])
   end
 
   # GET /roles/1/edit
@@ -82,11 +82,11 @@ class RolesController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = "/empresas/#{@objeto.empresa.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
+      @redireccion = "/recursos/tablas?ftab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.
     def rol_params
-      params.require(:rol).permit(:rol, :empresa_id, :estado, :creado_por, :actualizado_por)
+      params.require(:rol).permit(:rol, :estado, :creado_por, :actualizado_por)
     end
 end

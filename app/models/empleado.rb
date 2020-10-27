@@ -16,8 +16,7 @@ class Empleado < ApplicationRecord
  	]
 
 	TIPO_NEW = 'child_sel'
-	LINK_SELECCION = "/roles/seleccion"
-	PADRE = 'empresas'
+	SELECTOR = "roles"
 
  	FORM_FIELDS = [
 		['rut',                 'entry'],

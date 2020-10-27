@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :registros
   end
   resources :detalle_pedidos do
+    match :nuevo, via: :get, on: :collection
     resources :agregados
   end
   resources :empleados do

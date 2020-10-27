@@ -16,9 +16,9 @@ class Registro < ApplicationRecord
 		['telefono', 'fnormal']
 	]
 
-	TIPO_NEW = 'join_display'
-	LINK_SELECCION = "/zonas/seleccion"
-	THROUGH_REF = 'empresas'
+	TIPO_NEW = 'child_sel'
+	SELECTOR = "zonas"
+
 	F_TABLA = 'clientes'
 
 	D_SHOW = {

@@ -4,7 +4,7 @@ class Empresa < ApplicationRecord
 
 	# TABLA
 	D_TABLA = {
-		titulo:  true,
+		titulo:  false,
 		tabs:    false,
 		paginas: false,
 		estados: true,
@@ -16,7 +16,7 @@ class Empresa < ApplicationRecord
 		['razon_social', 'normal']
 	]
 
-	TIPO_NEW = 'normal'
+	TIPO_NEW = 'new'
 
 	FORM_FIELDS = [
 		['rut',             'entry'],
@@ -43,7 +43,6 @@ class Empresa < ApplicationRecord
 	]
 
 
-	has_many :roles
 	has_many :empleados
 	has_many :categorias
 	has_many :productos

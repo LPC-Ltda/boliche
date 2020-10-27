@@ -16,8 +16,7 @@ class Producto < ApplicationRecord
  	]
 
 	TIPO_NEW = 'child_sel'
-	LINK_SELECCION = "/categorias/seleccion"
-	PADRE = 'empresas'
+	SELECTOR = "categorias"
 
 	FORM_FIELDS = [
 		['producto',            'entry'],

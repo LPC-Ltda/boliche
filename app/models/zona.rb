@@ -4,7 +4,7 @@ class Zona < ApplicationRecord
 
 	D_TABLA = {
 		ftabs:   true,
-		titulo:  true,
+		titulo:  false,
 		tabs:    false,
 		paginas: false,
 		estados: true,
@@ -16,8 +16,7 @@ class Zona < ApplicationRecord
 		['tarifa', 'normal']
 	]
 
-	TIPO_NEW = 'child'
-	PADRE = 'empresas'
+	TIPO_NEW = 'child_new'
  	
 	FORM_FIELDS = [
 		['zona',             'entry'],
@@ -38,7 +37,6 @@ class Zona < ApplicationRecord
 	}
 
 	SHOW_FIELDS = [
-		['zona',             'normal'],
 		['estado',          'hidden'],
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']

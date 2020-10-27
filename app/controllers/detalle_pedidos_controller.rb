@@ -17,6 +17,12 @@ class DetallePedidosController < ApplicationController
     @objeto = DetallePedido.new
   end
 
+  def nuevo
+    @objeto = DetallePedido.new(pedido_id: params[:pedido_id], producto_id: params[:producto_id], estado: DetallePedido::ESTADOS[0])
+    @objeto.save
+    redirect_to @objeto.pedido
+  end
+
   # GET /detalle_pedidos/1/edit
   def edit
   end
@@ -28,7 +34,8 @@ class DetallePedidosController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Detalle pedido was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Detalle pedido was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -42,7 +49,8 @@ class DetallePedidosController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(detalle_pedido_params)
-        format.html { redirect_to @objeto, notice: 'Detalle pedido was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Detalle pedido was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -54,9 +62,10 @@ class DetallePedidosController < ApplicationController
   # DELETE /detalle_pedidos/1
   # DELETE /detalle_pedidos/1.json
   def destroy
+    set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to detalle_pedidos_url, notice: 'Detalle pedido was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Detalle pedido was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +74,10 @@ class DetallePedidosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_detalle_pedido
       @objeto = DetallePedido.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/pedidos/#{@objeto.pedido.id}?tab=#{@objeto.class.table_name}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

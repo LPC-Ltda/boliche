@@ -23,7 +23,6 @@ class PedidosController < ApplicationController
     @objeto = Pedido.new
   end
   def nuevo
-    puts 'entro'
     @objeto = Pedido.new(registro_id: params[:registro_id], hora_pedido: DateTime.now, estado: Pedido::ESTADOS[0])
     @objeto.save
     redirect_to @objeto
@@ -40,7 +39,8 @@ class PedidosController < ApplicationController
 
     respond_to do |format|
       if @objeto.save
-        format.html { redirect_to @objeto, notice: 'Pedido was successfully created.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Pedido was successfully created.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
@@ -54,7 +54,8 @@ class PedidosController < ApplicationController
   def update
     respond_to do |format|
       if @objeto.update(pedido_params)
-        format.html { redirect_to @objeto, notice: 'Pedido was successfully updated.' }
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: 'Pedido was successfully updated.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
@@ -66,9 +67,10 @@ class PedidosController < ApplicationController
   # DELETE /pedidos/1
   # DELETE /pedidos/1.json
   def destroy
+    set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to pedidos_url, notice: 'Pedido was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Pedido was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,6 +79,10 @@ class PedidosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pedido
       @objeto = Pedido.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = "/registros/#{@objeto.registro.id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.

@@ -83,24 +83,26 @@ module ApplicationHelper
 
 	def get_new_link(controller)
 		case controller.classify.constantize::TIPO_NEW
-		when 'normal'
+		# TIPO_NEW = 'new'
+		# {'clientes', 'roles'}
+		when 'new'
 			"/#{controller}/new"
-		when 'child'
-			"/#{controller.classify.constantize::PADRE}/#{@objeto.id}/#{controller}/new"
-		when 'nuevo'
+		# TIPO_NEW = 'child_new' : show_padre + controller/new
+		# {'categorias', 'zonas'}
+		when 'child_new'
+			"/#{@objeto.class.name.downcase.pluralize}/#{@objeto.id}/#{controller}/new"
+		# TIPO_NEW = 'child_nuevo'
+		# {'pedidos'}
+		when 'child_nuevo'
 			"/#{controller}/nuevo?#{@objeto.class.name.downcase}_id=#{@objeto.id}"
-		when 'seleccion'
-			controller.classify.constantize::LINK_SELECCION
+		# TIPO_NEW = 'child_sel' : seleccion ? parametro_padre
+		# {'empleados', 'productos', 'clientes(*)'}
 		when 'child_sel'
-			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::PADRE.singularize}_id=#{@objeto.id}"
-		when 'through'
-			"/#{controller}/new?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
-		when 'through_sel'
-			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
-		when 'join_display'
-			"#{controller.classify.constantize::LINK_SELECCION}?#{controller.classify.constantize::THROUGH_REF.singularize}_id=#{@objeto.id}"
+			"/#{controller.classify.constantize::SELECTOR}/seleccion?#{@objeto.class.name.downcase}_id=#{@objeto.id}"
+		# TIPO_NEW = 'detalle_pedido' : seleccion ? parametro_padre & empresa
+		# {'empleados', 'productos', 'clientes(*)'}
 		when 'detalle_pedido'
-			"#{controller.classify.constantize::LINK_SELECCION}?empresa_id=#{@objeto.registro.empresa.id}&pedido_id=#{@objeto.id}"
+			"/#{controller.classify.constantize::SELECTOR}/seleccion?#{@objeto.class.name.downcase}_id=#{@objeto.id}&empresa_id=#{@objeto.registro.empresa.id}"
 		end
 	end
 

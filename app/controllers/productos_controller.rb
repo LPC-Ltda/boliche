@@ -8,7 +8,7 @@ class ProductosController < ApplicationController
   end
 
   def seleccion
-    @link_seleccion = "/detalle_pedidos/new?pedido_id=#{params[:pedido_id]}&producto_id="
+    @link_seleccion = "/detalle_pedidos/nuevo?pedido_id=#{params[:pedido_id]}&producto_id="
     @coleccion = Empresa.find(Pedido.find(params[:pedido_id]).registro.empresa.id).productos
   end
 

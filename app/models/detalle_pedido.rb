@@ -1,5 +1,5 @@
 class DetallePedido < ApplicationRecord
-	ESTADOS = ['activo', 'baja']
+	ESTADOS = ['activo']
 
 	D_TABLA = {
 		titulo:  false,
@@ -16,7 +16,7 @@ class DetallePedido < ApplicationRecord
  	]
 
 	TIPO_NEW = 'detalle_pedido'
-	LINK_SELECCION = "/productos/seleccion"
+	SELECTOR = "productos"
 	PADRE = 'empresas'
 
 	FORM_FIELDS = [

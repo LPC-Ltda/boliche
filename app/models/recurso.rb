@@ -15,6 +15,6 @@ class Recurso < ApplicationRecord
 	TABLE_ACTIONS = ['tablas']
 
 	# TABS de la acción "tablas" de "recursos_controller"
-	TABS = ['empresas']
+	TABS = ['empresas', 'roles']
 
 end

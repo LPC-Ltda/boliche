@@ -1,5 +1,5 @@
 class Pedido < ApplicationRecord
-	ESTADOS = ['activo', 'baja']
+	ESTADOS = ['ingreso', 'pago', 'preparación', 'despacho', 'entrega', 'baja']
 	D_TABLA = {
 		titulo:  false,
 		tabs:    false,
@@ -13,8 +13,7 @@ class Pedido < ApplicationRecord
  		['hora_pedido', 'normal'], 
  		['estado',      'normal']
  	]
-	TIPO_NEW = 'nuevo'
-	PADRE = 'registros'
+	TIPO_NEW = 'child_nuevo'
 
 	FORM_FIELDS = [
 		['hora_pedido',      'entry'],
