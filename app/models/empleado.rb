@@ -1,4 +1,6 @@
 class Empleado < ApplicationRecord
+	before_save :format_rut
+
 	ESTADOS = ['activo', 'baja']
 
 	D_TABLA = {
@@ -67,4 +69,10 @@ class Empleado < ApplicationRecord
 	def show_title
 		"#{ApplicationController.helpers.d_rut(self.rut)} | #{self.nombre} #{self.apellido_paterno} #{self.apellido_materno}"
 	end
+
+  private
+
+	  def format_rut
+	    self.rut = ApplicationController.helpers.d_rut(self.rut) unless self.rut.blank?
+	  end
 end

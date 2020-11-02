@@ -1,4 +1,5 @@
 class Empresa < ApplicationRecord
+	before_save :format_rut
 	# MODELO
 	ESTADOS = ['ingreso', 'activa', 'baja']
 
@@ -65,4 +66,10 @@ class Empresa < ApplicationRecord
 	def show_title
 		"#{ApplicationController.helpers.d_rut(self.rut)} | #{self.razon_social}"
 	end
+
+	private
+
+	  def format_rut
+	    self.rut = ApplicationController.helpers.d_rut(self.rut) unless self.rut.blank?
+	  end
 end

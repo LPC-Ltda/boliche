@@ -10,7 +10,7 @@ class Pedido < ApplicationRecord
 
  	TABLA_FIELDS = [
  		['id',          'show'], 
- 		['hora_pedido', 'normal'], 
+ 		['hora_pedido', 'diahora'], 
  		['estado',      'normal']
  	]
 	TIPO_NEW = 'child_nuevo'
@@ -33,7 +33,6 @@ class Pedido < ApplicationRecord
 	}
 
 	SHOW_FIELDS = [
-		['hora_pedido',      'normal'],
 		['estado',           'normal'],
 		['estado',           'hidden'],
 		['creado_por',       'hidden'],
@@ -45,6 +44,6 @@ class Pedido < ApplicationRecord
 
 	has_many :detalle_pedidos
 	def show_title
-		"#{self.id} | #{self.hora_pedido}"
+		"#{self.id} | #{ApplicationController.helpers.l(self.hora_pedido)}"
 	end
 end

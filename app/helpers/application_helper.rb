@@ -57,20 +57,13 @@ module ApplicationHelper
 	def m_tabla_fields(objeto)
 		objeto.class::TABLA_FIELDS
 	end
-	# Despliega campos en la tabla, cuida el formato 'rut'
-	def d_field(objeto, field)
-		case field
-		when 'rut'
-			d_rut(objeto[field])
-		else
-			objeto[field]
-		end
-	end
 	def d_rut(rut)
 		rut_base = rut.tr('.-', '').length == 8 ? '0'+rut.tr('.-', '') : rut.tr('.-', '')
 		rut_base.reverse.insert(1, '-').insert(5, '.').insert(9, '.').reverse
 	end
-
+	def d_tel(numero)
+		numero.reverse.insert(4, ' ').insert(9, ' ').reverse
+	end
 
 
 	def d_show(controller, label)

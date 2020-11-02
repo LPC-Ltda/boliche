@@ -7,9 +7,15 @@
 				<% when 'normal' %>
 					<td> <%= "#{field[0]}" %> </td>
 					<td> <%=  "#{o[field[0]]}" %> </td>
+				<% when 'diahora' %>
+					<td> <%= "#{field[0]}" %> </td>
+					<td> <%=  "#{l(o[field[0]])}" %> </td>
 				<% when 'fnormal' %>
 					<td> <%= "#{field[0]}" %> </td>
 					<td> <%= "#{ f_tabla(o).send(field[0]) }" %> </td>
+				<% when 'fdiahora' %>
+					<td> <%= "#{field[0]}" %> </td>
+					<td> <%= "#{ l(f_tabla(o).send(field[0])) }" %> </td>
 				<% end %>
 			</tr>
 		<% end %>

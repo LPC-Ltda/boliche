@@ -1,5 +1,6 @@
 class EmpresasController < ApplicationController
   before_action :set_empresa, only: [:show, :edit, :update, :destroy, :estado]
+  after_action :set_session_empresa, only: :show
 
   # GET /empresas
   # GET /empresas.json
@@ -74,6 +75,10 @@ class EmpresasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_empresa
       @objeto = Empresa.find(params[:id])
+    end
+
+    def set_session_empresa
+      session[:session_empresa_id] = @objeto.id
     end
 
     def set_redireccion

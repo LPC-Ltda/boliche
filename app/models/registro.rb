@@ -13,7 +13,7 @@ class Registro < ApplicationRecord
 		['nombre', 'fnormal'], 
 		['email', 'fshow'], 
 		['direccion', 'fnormal'], 
-		['telefono', 'fnormal']
+		['telefono', 'fphone']
 	]
 
 	TIPO_NEW = 'child_sel'
@@ -33,7 +33,7 @@ class Registro < ApplicationRecord
 	SHOW_FIELDS = [
 		['email',           'fnormal'],
 		['direccion',       'fnormal'],
-		['telefono',        'fnormal'],
+		['telefono',        'fphone'],
 		['estado',          'hidden'],
 		['creado_por',      'hidden'],
 		['actualizado_por', 'hidden']

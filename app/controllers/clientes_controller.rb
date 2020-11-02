@@ -1,5 +1,6 @@
 class ClientesController < ApplicationController
   before_action :set_cliente, only: [:show, :edit, :update, :destroy, :estado]
+  after_action :create_registro, only: :create
 
   # GET /clientes
   # GET /clientes.json
@@ -15,8 +16,9 @@ class ClientesController < ApplicationController
   # GET /clientes/new
   def new
     @empresa = Empresa.find(params[:empresa_id])
-    @r = @empresa.registros.create(estado: Registro::ESTADOS[0], cliente: Cliente.new(estado: Cliente::ESTADOS[0], zona_id: params[:zona_id]))
-    @objeto = @r.cliente
+#    @r = @empresa.registros.create(estado: Registro::ESTADOS[0], cliente: Cliente.new(estado: Cliente::ESTADOS[0], zona_id: params[:zona_id]))
+#    @objeto = @r.cliente
+    @objeto = Cliente.new(estado: Cliente::ESTADOS[0], zona_id: params[:zona_id])
   end
 
   # GET /clientes/1/edit
@@ -72,8 +74,15 @@ class ClientesController < ApplicationController
       @objeto = Cliente.find(params[:id])
     end
 
+    def create_registro
+      puts "-----------------------------------------------------------"
+      puts session[:session_empresa]
+      puts "-----------------------------------------------------------"
+      @objeto.registros << Registro.create(estado: Registro::ESTADOS[0], empresa_id: session[:session_empresa_id])
+    end
+
     def set_redireccion
-      @redireccion = "/empresas/#{@objeto.empresas[0].id}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
+      @redireccion = "/empresas/#{session[:session_empresa_id]}?tab=#{@objeto.class.name.downcase.pluralize}&estado=#{@objeto.estado}"
     end
 
     # Only allow a list of trusted parameters through.
