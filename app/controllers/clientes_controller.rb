@@ -75,9 +75,6 @@ class ClientesController < ApplicationController
     end
 
     def create_registro
-      puts "-----------------------------------------------------------"
-      puts session[:session_empresa]
-      puts "-----------------------------------------------------------"
       @objeto.registros << Registro.create(estado: Registro::ESTADOS[0], empresa_id: session[:session_empresa_id])
     end
 
